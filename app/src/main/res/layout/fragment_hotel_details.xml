@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:scrollbars="none"
+
+    tools:context=".HotelDetailsFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/tvHotelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hotel Name"
+        android:fontFamily="sans-serif-black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location"
+         />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:cardElevation="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            >
+
+
+
+    <ImageView
+        android:id="@+id/ivHotelPicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:scaleType="centerCrop"
+        android:elevation="8dp"
+        />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="8dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Rated 10"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:padding="5dp"
+                android:elevation="5dp"
+                android:background="@color/design_default_color_primary"
+                android:textColor="#fff"
+                />
+
+        <TextView
+            android:id="@+id/tvBreakFastIncluded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Break Fast Included"
+            android:textSize="10sp"
+            android:background="@color/design_default_color_secondary_variant"
+            android:fontFamily="sans-serif-condensed-light"
+            android:textColor="#fff"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:elevation="5dp"
+            android:visibility="gone"
+
+
+            />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Availability"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We Price Match"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="italic"
+            android:layout_alignParentEnd="true"
+
+            />
+
+
+    </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</ScrollView>

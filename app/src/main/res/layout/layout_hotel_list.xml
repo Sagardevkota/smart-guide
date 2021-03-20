@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:id="@+id/cvHotelLayout"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/ivHotelPicture"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.6"
+            android:scaleType="centerCrop"
+            />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1.4"
+            android:padding="5dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/tvHotelName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hotel Name"
+                android:fontFamily="sans-serif-black"
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="10"
+                    android:textStyle="bold"
+                    android:padding="2dp"
+                    android:background="@color/design_default_color_primary_dark"
+                    android:textColor="#fff"
+                    />
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-condensed-light"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:id="@+id/tvBreakFastIncluded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Break Fast Included"
+                    android:textSize="10sp"
+                    android:background="@color/design_default_color_secondary_variant"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:textColor="#fff"
+                    android:padding="2dp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:visibility="gone"
+
+                    />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="From"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-condensed-light"
+                />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="NPR.XXXX"
+                android:fontFamily="sans-serif-black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="For tonight"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-condensed-light"
+                />
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>
