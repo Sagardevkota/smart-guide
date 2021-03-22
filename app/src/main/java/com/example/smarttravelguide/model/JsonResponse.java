@@ -4,7 +4,8 @@ public class JsonResponse {
     private String status;
     private String message;
 
-    public JsonResponse(String status, String message) {
+
+    public JsonResponse(String message,String status) {
         this.status = status;
         this.message = message;
     }

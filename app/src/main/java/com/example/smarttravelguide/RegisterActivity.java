@@ -1,5 +1,8 @@
 package com.example.smarttravelguide;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.User;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -19,12 +23,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class RegisterActivity extends AppCompatActivity {
+
+
 
     private static final String TAG = "REGISTER_ACTIVITY";
     private EditText etEmail,etPassword,etConfirmPassword,etPhone,etFullName,etUserName;
     private NestedScrollView nestedScrollView;
     private ChipGroup genderChipGroup;
+    private SharedPreferences sharedPreferences;
     private final List<String> genderList = Arrays.asList("Male","Female","Others");
     private Button buRegister;
     private String selectedGender = "Male";
@@ -46,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         nestedScrollView = findViewById(R.id.nestedScrollView);
+        sharedPreferences = getSharedPreferences("smart-travel-guide", Context.MODE_PRIVATE);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
@@ -100,6 +111,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         //construct user object
         User user = new User(fullName,email,password,userName,gender,phone);
+
+        STGAPI.getApiService().register(user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(jsonResponse -> {
+                    if (jsonResponse.getMessage().equalsIgnoreCase("Registered successfully"))
+                        goToHomeActivity();
+
+                    else Snackbar.make(nestedScrollView,jsonResponse.getMessage(),Snackbar.LENGTH_SHORT).show();
+                },throwable -> Log.e(TAG, "uploadData: "+throwable.getMessage() ));
 
         Log.i(TAG, "uploadData: "+user.toString());
 
@@ -191,5 +212,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else return true;
 
+    }
+
+    private void goToHomeActivity() {
+        sharedPreferences.edit().putBoolean("authenticated",true).apply();
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

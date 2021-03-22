@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,16 +17,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smarttravelguide.api.STGAPI;
+import com.example.smarttravelguide.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.jvm.internal.Ref;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LOGIN_ACTIVITY";
     //declare variables
     private EditText textEmail, textPassword;
     private TextView tvRegister;
@@ -66,19 +72,25 @@ public class LoginActivity extends AppCompatActivity {
         String password = textPassword.getText().toString();
         //check if email and password are not empty
         if (email.length() != 0 && password.length() != 0) {
+            User user = new User(email,password);
 
-            if (email.equalsIgnoreCase("Bishal") && password.equalsIgnoreCase("bishal123")) {
-                sharedPreferences.edit().putBoolean("authenticated", true).apply();
-                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-                goToHomeActivity();
+            STGAPI.getApiService().login(user)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(jsonResponse -> {
+                        if (jsonResponse.getMessage().equalsIgnoreCase("Login Successful")){
+
+                            goToHomeActivity();
+                        }
+                        else Snackbar.make(rootLayout,jsonResponse.getMessage(),Snackbar.LENGTH_SHORT).show();
+                    },throwable -> Log.e(TAG, "doLogin: "+throwable.getMessage() ));
             } else
-                Snackbar.make(rootLayout, "Incorrect email or password", Snackbar.LENGTH_SHORT).show();
-        } else
             Snackbar.make(rootLayout, "Please fill up every field", Snackbar.LENGTH_SHORT).show();
     }
 
 
     private void goToHomeActivity() {
+        sharedPreferences.edit().putBoolean("authenticated",true).apply();
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
