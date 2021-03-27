@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="#eee"
     android:id="@+id/rootLayout"
-
-
     >
 
 
     <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -33,26 +31,36 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/ivCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_cancel"
+                    android:background="#eee"
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:layout_gravity="center"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.6"
                     android:textAlignment="center"
                     android:text="Account Details"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="22sp" />
 
                 <Button
-                    android:id="@+id/buEdit"
+                    android:id="@+id/buSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginStart="30dp"
                     android:layout_marginRight="0dp"
                     android:layout_weight="0.2"
-                    android:text="Edit"
+                    android:text="Save"
                     />
 
             </LinearLayout>
@@ -66,14 +74,14 @@
                 android:padding="16dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvFullName"
+                <EditText
+                    android:id="@+id/etFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
                     android:textSize="18sp"
                     android:drawableStart="@drawable/ic_baseline_account_circle_24"
 
+                    android:hint="Full Name"
                     android:drawablePadding="20dp"
 
                     />
@@ -93,15 +101,16 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"/>
 
-                <TextView
-                    android:id="@+id/tvEmail"
+                <EditText
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:hint="Email"
                     android:textSize="18sp"
                     android:drawablePadding="20dp"
                     android:drawableStart="@drawable/ic_email_24px"
 
+                    android:inputType="textEmailAddress"
 
                     />
                 <TextView
@@ -112,6 +121,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:layout_marginStart="50dp"
 
+
                     />
 
 
@@ -123,15 +133,15 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"/>
 
-
-                <TextView
-                    android:id="@+id/tvPassword"
+                <EditText
+                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="*******"
+                    android:hint="Password"
                     android:textSize="18sp"
                     android:drawablePadding="20dp"
-                    android:drawableStart="@drawable/ic_email_24px"
+                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
 
 
                     />
@@ -139,7 +149,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Password"
+                    android:text="password"
                     android:fontFamily="sans-serif-condensed-light"
                     android:layout_marginStart="50dp"
 
@@ -154,11 +164,11 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"/>
 
-                <TextView
-                    android:id="@+id/tvUserName"
+                <EditText
+                    android:id="@+id/etUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Username"
+                    android:hint="Username"
                     android:textSize="18sp"
                     android:drawableStart="@drawable/ic_baseline_account_circle_24"
                     android:drawablePadding="20dp"
@@ -181,24 +191,15 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"/>
 
-                <TextView
-                    android:id="@+id/tvGender"
+                <com.google.android.material.chip.ChipGroup xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/genderChipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gender"
-                    android:textSize="18sp"
-                    android:drawablePadding="20dp"
-                    android:drawableStart="@drawable/ic_male"
-
-
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    android:layout_marginBottom="5dp"
                     />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sex"
-                    android:fontFamily="sans-serif-condensed-light"
-                    android:layout_marginStart="50dp"
-                    />
+
 
 
 
@@ -209,15 +210,17 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"/>
 
-              <TextView
-                    android:id="@+id/tvPhone"
+                <EditText
+                    android:id="@+id/etPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phone Number"
+                    android:hint="Phone"
                     android:textSize="18sp"
-                     android:drawablePadding="20dp"
+                    android:drawablePadding="20dp"
                     android:drawableStart="@drawable/ic_baseline_phone_iphone_24"
 
+                    android:inputType="number"
+                    android:maxLength="10"
 
                     />
                 <TextView

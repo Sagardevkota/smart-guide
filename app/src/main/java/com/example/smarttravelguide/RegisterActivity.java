@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.User;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Arrays;
@@ -110,14 +114,14 @@ public class RegisterActivity extends AppCompatActivity {
         String fullName = etFullName.getText().toString();
 
         //construct user object
-        User user = new User(fullName,email,password,userName,gender,phone);
+        User user = new User(0,fullName,email,password,userName,gender,phone);
 
         STGAPI.getApiService().register(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(jsonResponse -> {
                     if (jsonResponse.getMessage().equalsIgnoreCase("Registered successfully"))
-                        goToHomeActivity();
+                        goToLoginActivity();
 
                     else Snackbar.make(nestedScrollView,jsonResponse.getMessage(),Snackbar.LENGTH_SHORT).show();
                 },throwable -> Log.e(TAG, "uploadData: "+throwable.getMessage() ));
@@ -211,6 +215,27 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         else return true;
+
+    }
+
+    private void goToLoginActivity(){
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.register_successful_dialog, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setCancelable(false);
+        String userName = etUserName.getText().toString();
+
+        TextView tvLogin = dialogView.findViewById(R.id.tvLogin);
+        TextView tvUserName = dialogView.findViewById(R.id.tvUserName);
+        tvUserName.setText("Welcome, "+userName);
+        tvLogin.setOnClickListener(view->{
+            Intent intent = new Intent(this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+        dialogBuilder.show();
+
 
     }
 

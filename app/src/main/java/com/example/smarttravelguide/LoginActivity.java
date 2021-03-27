@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(jsonResponse -> {
                         if (jsonResponse.getMessage().equalsIgnoreCase("Login Successful")){
-
+                            sharedPreferences.edit().putString("id",jsonResponse.getId()).apply();
                             goToHomeActivity();
                         }
                         else Snackbar.make(rootLayout,jsonResponse.getMessage(),Snackbar.LENGTH_SHORT).show();

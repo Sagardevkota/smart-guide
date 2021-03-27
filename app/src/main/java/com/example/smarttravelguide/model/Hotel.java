@@ -29,6 +29,28 @@ public class Hotel implements Parcelable {
         this.breakFastIncluded = breakFastIncluded;
     }
 
+    protected Hotel(Parcel in) {
+        hotelId = in.readInt();
+        hotelName = in.readString();
+        location = in.readString();
+        price = in.readString();
+        description = in.readString();
+        picturePath = in.readString();
+        breakFastIncluded = in.readByte() != 0;
+    }
+
+    public static final Creator<Hotel> CREATOR = new Creator<Hotel>() {
+        @Override
+        public Hotel createFromParcel(Parcel in) {
+            return new Hotel(in);
+        }
+
+        @Override
+        public Hotel[] newArray(int size) {
+            return new Hotel[size];
+        }
+    };
+
     public String getHotelName() {
         return hotelName;
     }
@@ -100,6 +122,12 @@ public class Hotel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeInt(hotelId);
+        dest.writeString(hotelName);
+        dest.writeString(location);
+        dest.writeString(price);
+        dest.writeString(description);
+        dest.writeString(picturePath);
+        dest.writeByte((byte) (breakFastIncluded ? 1 : 0));
     }
 }

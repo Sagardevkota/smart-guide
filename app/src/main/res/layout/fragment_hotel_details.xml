@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="8dp"
+
     android:scrollbars="none"
 
     tools:context=".HotelDetailsFragment">
@@ -16,12 +16,63 @@
         android:orientation="vertical">
 
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/profileToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:elevation="1dp"
+            android:layout_marginBottom="10dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:tint="@color/black"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details"
+                    android:layout_marginStart="60dp"
+                    android:textSize="24sp"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="sans-serif-condensed-medium"
+
+                    />
 
 
 
 
 
-    <TextView
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            >
+
+
+
+
+        <TextView
         android:id="@+id/tvHotelName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +130,7 @@
                 android:paddingEnd="5dp"
                 android:padding="5dp"
                 android:elevation="5dp"
-                android:background="@color/design_default_color_primary"
+                android:background="@color/google_red"
                 android:textColor="#fff"
                 />
 
@@ -140,6 +191,15 @@
 
     </RelativeLayout>
 
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvRooms"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 

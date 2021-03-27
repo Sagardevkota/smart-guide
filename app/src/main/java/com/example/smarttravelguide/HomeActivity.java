@@ -23,11 +23,11 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private BottomNavigationView bottomNavigationView;
     private RelativeLayout rootLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportActionBar().show();
         sharedPreferences = getSharedPreferences("smart-travel-guide", Context.MODE_PRIVATE);
 
         rootLayout = findViewById(R.id.rootLayout);
@@ -106,6 +106,7 @@ public class HomeActivity extends AppCompatActivity {
 
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 0) {
+            getSupportActionBar().show();
             MaterialAlertDialogBuilder alertDialogBuilder = new MaterialAlertDialogBuilder(this);
             alertDialogBuilder.setTitle("Exit")
                     .setMessage("Do you want to exit?")

@@ -1,16 +1,42 @@
 package com.example.smarttravelguide.model;
 
 public class Room {
+    private int roomId;
+    private int hotelId;
     private String roomType;
     private int sleepCount;
     private String price;
-    private int roomNumber;
+    private String totalRooms;
 
-    public Room(String roomType, int sleepCount, String price, int roomNumber) {
+
+    public Room(int roomId, int hotelId, String roomType, int sleepCount, String price, String totalRooms) {
+        this.roomId = roomId;
+        this.hotelId = hotelId;
         this.roomType = roomType;
         this.sleepCount = sleepCount;
         this.price = price;
-        this.roomNumber = roomNumber;
+        this.totalRooms = totalRooms;
+
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public void setTotalRooms(String totalRooms) {
+        this.totalRooms = totalRooms;
     }
 
     public String getRoomType() {
@@ -37,11 +63,8 @@ public class Room {
         this.price = price;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public String getTotalRooms() {
+        return totalRooms;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 }

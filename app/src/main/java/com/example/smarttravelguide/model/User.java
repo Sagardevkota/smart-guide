@@ -1,7 +1,12 @@
 package com.example.smarttravelguide.model;
 
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
+
+    private int id;
     private String fullName;
     private String email;
     private String password;
@@ -9,7 +14,8 @@ public class User {
     private String gender;
     private String phone;
 
-    public User(String fullName, String email, String password, String userName, String gender, String phone) {
+    public User(int id,String fullName, String email, String password, String userName, String gender, String phone) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
@@ -22,6 +28,28 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    protected User(Parcel in) {
+        id = in.readInt();
+        fullName = in.readString();
+        email = in.readString();
+        password = in.readString();
+        userName = in.readString();
+        gender = in.readString();
+        phone = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getFullName() {
         return fullName;
@@ -71,15 +99,28 @@ public class User {
         this.phone = phone;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     @Override
-    public String toString() {
-        return "User{" +
-                "fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(fullName);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeString(userName);
+        dest.writeString(gender);
+        dest.writeString(phone);
     }
 }
