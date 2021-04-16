@@ -14,19 +14,21 @@ public class Hotel implements Parcelable {
     private String picturePath;
     private Room room;
     private boolean breakFastIncluded;
+    private float latitude;
+    private float longitude;
 
 
-
-
-    //for hotel adapter list
-    public Hotel(int hotelId,String hotelName, String location, String price, String description, String picturePath, Boolean breakFastIncluded) {
+    public Hotel(int hotelId, String hotelName, String location, String price, String description, String picturePath, Room room, boolean breakFastIncluded, float latitude, float longitude) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.location = location;
         this.price = price;
         this.description = description;
         this.picturePath = picturePath;
+        this.room = room;
         this.breakFastIncluded = breakFastIncluded;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected Hotel(Parcel in) {
@@ -37,6 +39,8 @@ public class Hotel implements Parcelable {
         description = in.readString();
         picturePath = in.readString();
         breakFastIncluded = in.readByte() != 0;
+        latitude = in.readFloat();
+        longitude = in.readFloat();
     }
 
     public static final Creator<Hotel> CREATOR = new Creator<Hotel>() {
@@ -50,6 +54,14 @@ public class Hotel implements Parcelable {
             return new Hotel[size];
         }
     };
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
 
     public String getHotelName() {
         return hotelName;
@@ -107,12 +119,20 @@ public class Hotel implements Parcelable {
         this.breakFastIncluded = breakFastIncluded;
     }
 
-    public int getHotelId() {
-        return hotelId;
+    public float getLatitude() {
+        return latitude;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 
     @Override
@@ -129,5 +149,7 @@ public class Hotel implements Parcelable {
         dest.writeString(description);
         dest.writeString(picturePath);
         dest.writeByte((byte) (breakFastIncluded ? 1 : 0));
+        dest.writeFloat(latitude);
+        dest.writeFloat(longitude);
     }
 }

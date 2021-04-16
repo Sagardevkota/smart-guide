@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.smarttravelguide.adapter.PlaceAdapter;
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.Place;
 
@@ -44,6 +45,8 @@ public class DestinationFragment extends Fragment {
         ivBack.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().popBackStack();
         });
+        getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.GONE);
+
         setViews();
         return view;
     }

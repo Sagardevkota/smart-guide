@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:layout_margin="5dp"
+    >
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/ivHotelPicture"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+
+
+        />
+
+
+
+
+
+            <TextView
+
+                android:id="@+id/tvHotelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hotel Name"
+                android:layout_margin="2dp"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed-medium"
+
+
+                />
+
+            <TextView
+                android:layout_margin="2dp"
+                android:id="@+id/tvPackageType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Package"
+                />
+
+
+            <TextView
+                android:id="@+id/tvRoomsBooked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rooms Booked"
+                android:layout_margin="2dp"
+                />
+
+            <TextView
+                android:id="@+id/tvCheckInDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check In Date"
+                android:layout_margin="2dp"
+                />
+
+            <TextView
+                android:id="@+id/tvCheckOutDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check Out Date"
+                android:layout_margin="2dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tvPaymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Method"
+                android:layout_margin="2dp"
+                />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Price"
+                android:layout_margin="2dp"
+                android:textColor="@color/google_red"
+                />
+
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/LightGray"
+        />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,6 +23,7 @@ public class HomeFragment extends Fragment {
 
     private ImageView ivDestination, ivHotel,ivAdventure,ivRestaurant;
     private BottomNavigationView bottomNavigationView;
+    private NestedScrollView nestedScrollView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +39,17 @@ public class HomeFragment extends Fragment {
         ivHotel = view.findViewById(R.id.ivHotel);
         ivAdventure = view.findViewById(R.id.ivAdventure);
         ivRestaurant = view.findViewById(R.id.ivRestaurant);
+        nestedScrollView = view.findViewById(R.id.nestedScrollView);
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        nestedScrollView.setOnScrollChangeListener((View.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (scrollY-oldScrollY>0)
+                        bottomNavigationView.setVisibility(View.GONE);
+                else
+                            bottomNavigationView.setVisibility(View.VISIBLE);
+
+            });
+
         setOnClickListenersOnImageViews();
 
         return view;
@@ -80,6 +95,7 @@ public class HomeFragment extends Fragment {
                     .commit();
         });
         ivRestaurant.setOnClickListener(v -> {
+            hideBottomNaigationView();
             Bundle bundle = new Bundle();
             RestaurantFragment restaurantFragment = new RestaurantFragment();
             bundle.putString("type","restaurant");
@@ -94,8 +110,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void hideBottomNaigationView(){
-        bottomNavigationView.setVisibility(View.GONE);
-         ((AppCompatActivity) getActivity()).getSupportActionBar().setShowHideAnimationEnabled(false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
     }

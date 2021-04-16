@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="5dp"
-    android:id="@+id/cvLayout"
+    android:id="@+id/cvHotelLayout"
     >
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -14,39 +14,14 @@
         android:weightSum="2"
         android:orientation="horizontal"
         >
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_weight="0.6"
-            >
-
-
 
         <ImageView
-            android:id="@+id/ivPlacePicture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/ivRestaurantPicture"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.6"
             android:scaleType="centerCrop"
             />
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Featured"
-                android:padding="2dp"
-                android:textSize="5sp"
-                android:layout_alignParentStart="true"
-                android:background="@color/google_red"
-                android:textColor="#fff"
-                />
-
-
-
-
-        </RelativeLayout>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -58,15 +33,22 @@
 
 
                 <TextView
-                    android:id="@+id/tvPlaceName"
+                    android:id="@+id/tvRestaurantName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Place Name"
+                    android:text="Restaurant Name"
                     android:fontFamily="sans-serif-black"
                     />
 
 
-
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-condensed-light"
+                />
 
 
 
@@ -85,31 +67,13 @@
 
 
             <TextView
-                android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-condensed-light"
 
-                />
-
-            <TextView
-                android:id="@+id/tvLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-condensed-light"
-                />
-            <TextView
-                android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="NPR.XXXX"
-                android:fontFamily="sans-serif-black"
-                android:textColor="@color/google_red"
+                android:text="Booked 552 times today"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+
                 />
 
 

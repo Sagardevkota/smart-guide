@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Map;
+
 public class HomeActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
@@ -45,10 +47,8 @@ public class HomeActivity extends AppCompatActivity {
                             .commit();
                     break;
                 case R.id.bottom_nav_map:
-                   item.setChecked(true);
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container,new MapFragment())
-                            .commit();
+                   Intent intent = new Intent(this, MapActivity.class);
+                   startActivity(intent);
                     break;
 
 
@@ -56,6 +56,13 @@ public class HomeActivity extends AppCompatActivity {
                     item.setChecked(true);
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container,new MyAccountFragment())
+                            .commit();
+                    break;
+
+                case R.id.bottom_nav_my_booking:
+                    item.setChecked(true);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container,new MyBookingFragment())
                             .commit();
                     break;
             }
@@ -106,7 +113,6 @@ public class HomeActivity extends AppCompatActivity {
 
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 0) {
-            getSupportActionBar().show();
             MaterialAlertDialogBuilder alertDialogBuilder = new MaterialAlertDialogBuilder(this);
             alertDialogBuilder.setTitle("Exit")
                     .setMessage("Do you want to exit?")
@@ -124,9 +130,7 @@ public class HomeActivity extends AppCompatActivity {
             if(f instanceof HomeFragment){
                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
             }
-            if(f instanceof MapFragment){
-                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_map);
-            }
+
             if(f instanceof MyAccountFragment){
                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_my_account);
             }

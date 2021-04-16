@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -33,6 +35,7 @@ public class MyAccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_account, container, false);
         sharedPreferences = getContext().getSharedPreferences("smart-travel-guide", Context.MODE_PRIVATE);
+        hideBottomNaigationView();
         tvFullName = view.findViewById(R.id.tvFullName);
         tvEmail = view.findViewById(R.id.tvEmail);
         tvUserName = view.findViewById(R.id.tvUserName);
@@ -73,6 +76,13 @@ public class MyAccountFragment extends Fragment {
 
 
 
+
+    }
+
+    private void hideBottomNaigationView(){
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
 
     }
 }

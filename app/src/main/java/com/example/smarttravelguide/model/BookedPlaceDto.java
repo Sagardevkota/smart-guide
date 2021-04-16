@@ -1,10 +1,15 @@
 package com.example.smarttravelguide.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class BookedPlaceDto {
 
-public class Place implements Parcelable {
+
     private int placeId;
+    private String packageType;
+    private int quantity;
+    private String date;
+    private String price;
+    private int bookedBy;
+
     private String placeName;
     private String location;
     private String time;
@@ -16,8 +21,13 @@ public class Place implements Parcelable {
     private float longitude;
     private float latitude;
 
-    public Place(int placeId, String placeName, String location, String time, String expense, String transport, String description, String picturePath, String type, float longitude, float latitude) {
+    public BookedPlaceDto(int placeId, String packageType, int quantity, String date, String price, int bookedBy, String placeName, String location, String time, String expense, String transport, String description, String picturePath, String type, float longitude, float latitude) {
         this.placeId = placeId;
+        this.packageType = packageType;
+        this.quantity = quantity;
+        this.date = date;
+        this.price = price;
+        this.bookedBy = bookedBy;
         this.placeName = placeName;
         this.location = location;
         this.time = time;
@@ -30,13 +40,52 @@ public class Place implements Parcelable {
         this.latitude = latitude;
     }
 
-
     public int getPlaceId() {
         return placeId;
     }
 
     public void setPlaceId(int placeId) {
         this.placeId = placeId;
+    }
+
+    public String getPackageType() {
+        return packageType;
+    }
+
+    public void setPackageType(String packageType) {
+        this.packageType = packageType;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public int getBookedBy() {
+        return bookedBy;
+    }
+
+    public void setBookedBy(int bookedBy) {
+        this.bookedBy = bookedBy;
     }
 
     public String getPlaceName() {
@@ -117,55 +166,5 @@ public class Place implements Parcelable {
 
     public void setLatitude(float latitude) {
         this.latitude = latitude;
-    }
-
-    public static Creator<Place> getCREATOR() {
-        return CREATOR;
-    }
-
-    protected Place(Parcel in) {
-        placeId = in.readInt();
-        placeName = in.readString();
-        location = in.readString();
-        time = in.readString();
-        expense = in.readString();
-        transport = in.readString();
-        description = in.readString();
-        picturePath = in.readString();
-        type = in.readString();
-        longitude = in.readFloat();
-        latitude = in.readFloat();
-    }
-
-    public static final Creator<Place> CREATOR = new Creator<Place>() {
-        @Override
-        public Place createFromParcel(Parcel in) {
-            return new Place(in);
-        }
-
-        @Override
-        public Place[] newArray(int size) {
-            return new Place[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(placeId);
-        dest.writeString(placeName);
-        dest.writeString(location);
-        dest.writeString(time);
-        dest.writeString(expense);
-        dest.writeString(transport);
-        dest.writeString(description);
-        dest.writeString(picturePath);
-        dest.writeString(type);
-        dest.writeFloat(longitude);
-        dest.writeFloat(latitude);
     }
 }

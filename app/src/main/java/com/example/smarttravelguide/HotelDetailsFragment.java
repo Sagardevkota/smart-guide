@@ -1,5 +1,6 @@
 package com.example.smarttravelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.smarttravelguide.adapter.RoomAdapter;
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.Hotel;
 import com.example.smarttravelguide.model.Room;
@@ -34,6 +36,7 @@ public class HotelDetailsFragment extends Fragment {
     private final List<Room> roomList = new ArrayList<>();
     private RoomAdapter roomAdapter;
     private ImageView ivBack;
+    private TextView tvOpenInMap;
 
 
     @Override
@@ -42,6 +45,10 @@ public class HotelDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_hotel_details, container, false);
         ivBack = view.findViewById(R.id.ivBack);
+        tvOpenInMap = view.findViewById(R.id.tvShowInMap);
+
+
+
 
         ivBack.setOnClickListener(v -> getActivity().getSupportFragmentManager().popBackStack());
 
@@ -68,15 +75,25 @@ public class HotelDetailsFragment extends Fragment {
                     .into(ivHotelImage);
             if (hotel.isBreakFastIncluded())
                 tvBreakFastIncluded.setVisibility(View.VISIBLE);
+
+            tvOpenInMap.setOnClickListener(v -> {
+
+                Intent intent = new Intent(getContext(),MapActivity.class);
+                intent.putExtra("latitude",hotel.getLatitude());
+                intent.putExtra("longitude",hotel.getLongitude());
+                intent.putExtra("name",hotel.getHotelName());
+                startActivity(intent);
+            });
             
             getRoomDetails(hotel.getHotelId());
         }
     }
 
     private void getRoomDetails(int hotelId) {
-        roomAdapter = new RoomAdapter(getContext(),roomList);
+        roomAdapter = new RoomAdapter(getActivity(),roomList);
         rvRooms.setAdapter(roomAdapter);
         rvRooms.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         roomList.clear();
         STGAPI.getApiService()

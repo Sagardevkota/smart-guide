@@ -1,4 +1,4 @@
-package com.example.smarttravelguide;
+package com.example.smarttravelguide.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smarttravelguide.DestinationDetailsFragment;
+import com.example.smarttravelguide.HomeActivity;
+import com.example.smarttravelguide.R;
 import com.example.smarttravelguide.model.Place;
 
 import org.jetbrains.annotations.NotNull;

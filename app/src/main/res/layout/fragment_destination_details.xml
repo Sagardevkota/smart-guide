@@ -131,22 +131,20 @@
                 />
 
             <TextView
-                android:id="@+id/tvBreakFastIncluded"
+                android:id="@+id/tvShowInMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Break Fast Included"
+                android:layout_alignParentEnd="true"
+                android:text="Show in Map"
                 android:textSize="10sp"
-                android:background="@color/design_default_color_secondary_variant"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="#fff"
+                android:textStyle="bold"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:padding="5dp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp"
                 android:elevation="5dp"
-                android:visibility="gone"
-
+                android:layout_marginStart="10dp"
+                android:background="@color/google_green"
+                android:textColor="#fff"
 
                 />
 
@@ -284,6 +282,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/buBook"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Book"

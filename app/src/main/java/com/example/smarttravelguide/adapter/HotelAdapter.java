@@ -1,4 +1,4 @@
-package com.example.smarttravelguide;
+package com.example.smarttravelguide.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smarttravelguide.HomeActivity;
+import com.example.smarttravelguide.HotelDetailsFragment;
+import com.example.smarttravelguide.R;
 import com.example.smarttravelguide.model.Hotel;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +26,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.MyViewHolder
     private final List<Hotel> hotelList;
     private final Context context;
 
-    HotelAdapter(Context context, List<Hotel> hotelList){
+    public HotelAdapter(Context context, List<Hotel> hotelList){
         this.hotelList = hotelList;
         this.context = context;
     }

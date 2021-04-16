@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:layout_margin="5dp"
+    >
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+
+
+>
+
+    <ImageView
+        android:id="@+id/ivRestaurantPicture"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+
+        />
+
+
+
+
+
+    <TextView
+
+        android:id="@+id/tvRestaurantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hotel Name"
+        android:layout_margin="2dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed-medium"
+
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/tvPartyCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of people"
+        android:layout_margin="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:layout_margin="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:layout_margin="2dp"
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/LightGray"
+        />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>

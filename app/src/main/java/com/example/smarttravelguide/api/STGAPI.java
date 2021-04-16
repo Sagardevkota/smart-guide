@@ -1,13 +1,21 @@
 package com.example.smarttravelguide.api;
 
+import com.example.smarttravelguide.model.BookedPlaceDto;
+import com.example.smarttravelguide.model.BookedRoomDto;
+import com.example.smarttravelguide.model.DestinationBook;
 import com.example.smarttravelguide.model.Hotel;
 import com.example.smarttravelguide.model.JsonResponse;
 import com.example.smarttravelguide.model.Place;
+import com.example.smarttravelguide.model.Restaurant;
+import com.example.smarttravelguide.model.RestaurantBook;
+import com.example.smarttravelguide.model.RestaurantDto;
 import com.example.smarttravelguide.model.Room;
+import com.example.smarttravelguide.model.RoomBook;
 import com.example.smarttravelguide.model.User;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -65,6 +73,8 @@ public class STGAPI {
             @GET("smart-travel-guide/hotels.php")
             Observable<List<Hotel>> getHotels();
 
+            @GET("smart-travel-guide/restaurants.php")
+            Observable<List<Restaurant>> getRestaurants();
 
             @GET("smart-travel-guide/rooms.php")
             Observable<List<Room>> getRooms(@Query("hotelId")int hotelId);
@@ -73,6 +83,29 @@ public class STGAPI {
             Observable<List<Place>> getPlaces(@Query("type")String type);
 
 
+            @POST("smart-travel-guide/book-destinations.php")
+            Observable<JsonResponse> bookDestination(@Body DestinationBook destinationBook);
+
+            @POST("smart-travel-guide/book-room.php")
+            Observable<JsonResponse> bookRoom(@Body RoomBook roomBook);
+
+            @POST("smart-travel-guide/check-for-room.php")
+            Observable<JsonResponse> checkForRoom(@Query("roomId")int roomId,@Query("checkInDate")String checkInDate,@Query("checkOutDate")String checkOutDate);
+
+            @GET("smart-travel-guide/booked-rooms.php")
+            Observable<List<BookedRoomDto>> getBookedRooms(@Query("userId")int userId);
+
+            @GET("smart-travel-guide/booked-places.php")
+            Observable<List<BookedPlaceDto>> getBookedPlaces(@Query("userId")int userId, @Query("type")String type);
+
+            @GET("smart-travel-guide/booked-restaurants.php")
+            Observable<List<RestaurantDto>> getBookedRestaurants(@Query("userId") int userId);
+
+            @GET("smart-travel-guide/check-for-restaurant.php")
+            Observable<JsonResponse> checkForTable(@Query("id")int id,@Query("date")String date,@Query("time")String time);
+
+            @POST("smart-travel-guide/book-restaurant.php")
+            Observable<JsonResponse> bookRestaurant(@Body RestaurantBook restaurantBook);
         }
 
     }

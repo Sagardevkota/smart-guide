@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
@@ -64,6 +65,9 @@ public class MyAccountEditFragment extends Fragment {
         buSave = view.findViewById(R.id.buSave);
         rootLayout = view.findViewById(R.id.rootLayout);
         ibBack = view.findViewById(R.id.ivCancel);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
 
         ibBack.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().popBackStack();

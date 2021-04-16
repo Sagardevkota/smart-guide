@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check For Room Availability"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/design_default_color_primary_dark"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tvChooseCheckInDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Choose Check In Date"
+            android:drawableTint="@color/cardview_dark_background"
+            android:drawableEnd="@drawable/ic_baseline_expand_more_24"
+
+            />
+
+        <TextView
+            android:id="@+id/tvCheckInDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Selected"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tvChooseCheckOutDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Check Out Date"
+            android:drawableTint="@color/cardview_dark_background"
+            android:drawableEnd="@drawable/ic_baseline_expand_more_24"
+
+            />
+
+        <TextView
+            android:id="@+id/tvCheckOutDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Selected"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+
+        <Button
+            android:id="@+id/buDismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dismiss"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="@color/google_red"
+            android:layout_margin="10dp"
+
+            />
+
+
+    <Button
+        android:id="@+id/buBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        />
+
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

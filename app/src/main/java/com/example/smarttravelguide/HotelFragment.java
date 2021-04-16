@@ -2,7 +2,6 @@ package com.example.smarttravelguide;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.smarttravelguide.adapter.HotelAdapter;
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.Hotel;
 
@@ -45,6 +45,8 @@ public class HotelFragment extends Fragment {
         tvTitle = view.findViewById(R.id.tvTitle);
         String type = getArguments().getString("type", "");
         tvTitle.setText(type.toUpperCase(Locale.ROOT));
+        getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.GONE);
+
         ivBack.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().popBackStack();
         });
