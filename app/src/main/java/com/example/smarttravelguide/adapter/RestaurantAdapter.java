@@ -59,7 +59,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             restaurantDetails.setArguments(bundle);
             ((AppCompatActivity)context).getSupportFragmentManager()
                     .beginTransaction()
-                    .addToBackStack("FRAGMENT_HOTEL")
+                    .addToBackStack("FRAGMENT_RESTAURANT")
                     .replace(R.id.fragment_container,restaurantDetails)
                     .commit();
         });

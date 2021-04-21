@@ -1,15 +1,10 @@
 package com.example.smarttravelguide;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.smarttravelguide.api.STGAPI;
@@ -31,7 +27,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -75,6 +70,7 @@ public class RestaurantDetails extends Fragment {
 
     private void initViews(Restaurant restaurant) {
         tvDetails.setText(restaurant.getName());
+
 
         tvOpenInMap.setOnClickListener(v -> {
 
@@ -173,7 +169,6 @@ public class RestaurantDetails extends Fragment {
                         .subscribe(jsonResponse -> {
                             if (jsonResponse.getMessage().equalsIgnoreCase("All tables available"))
                             {
-                                int partyCount = restaurant.getTotalPartySize();
                                         RestaurantBook restaurantBook =
                                                 new RestaurantBook(restaurant.getId(),partyCount,date,time,id);
                                 showDialog(restaurantBook);
@@ -231,6 +226,8 @@ public class RestaurantDetails extends Fragment {
                 })
                 .setTitle("Room Availability")
                 .show();
+
     }
+
 
 }

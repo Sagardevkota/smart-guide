@@ -106,6 +106,16 @@ public class STGAPI {
 
             @POST("smart-travel-guide/book-restaurant.php")
             Observable<JsonResponse> bookRestaurant(@Body RestaurantBook restaurantBook);
+            
+            @GET("smart-travel-guide/cancel-room.php")
+            Observable<JsonResponse> cancelRoom(@Query("roomId")int roomId);
+
+            @GET("smart-travel-guide/cancel-restaurant.php")
+            Observable<JsonResponse> cancelRestaurant(@Query("restaurantId")int restaurantId);
+
+            @GET("smart-travel-guide/cancel-place.php")
+            Observable<JsonResponse> cancelPlace(@Query("placeId")int placeId);
+
         }
 
     }

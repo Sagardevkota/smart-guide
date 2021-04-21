@@ -3,6 +3,7 @@ package com.example.smarttravelguide.model;
 public class BookedPlaceDto {
 
 
+    private int id;
     private int placeId;
     private String packageType;
     private int quantity;
@@ -21,7 +22,9 @@ public class BookedPlaceDto {
     private float longitude;
     private float latitude;
 
-    public BookedPlaceDto(int placeId, String packageType, int quantity, String date, String price, int bookedBy, String placeName, String location, String time, String expense, String transport, String description, String picturePath, String type, float longitude, float latitude) {
+
+    public BookedPlaceDto(int id, int placeId, String packageType, int quantity, String date, String price, int bookedBy, String placeName, String location, String time, String expense, String transport, String description, String picturePath, String type, float longitude, float latitude) {
+        this.id = id;
         this.placeId = placeId;
         this.packageType = packageType;
         this.quantity = quantity;
@@ -38,6 +41,14 @@ public class BookedPlaceDto {
         this.type = type;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPlaceId() {

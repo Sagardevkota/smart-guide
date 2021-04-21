@@ -59,11 +59,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         }
         else{
-            LatLng sydney = new LatLng(-34, 151);
+            LatLng pokhara= new LatLng(28.2096, 83.9856);
             mMap.addMarker(new MarkerOptions()
-                    .position(sydney)
-                    .title("Marker in Sydney"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,12.0f));
+                    .position(pokhara)
+                    .title("Marker in Pokhara"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pokhara,12.0f));
             mMap.getMaxZoomLevel();
         }
 

@@ -1,6 +1,7 @@
 package com.example.smarttravelguide;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -98,20 +100,28 @@ public class DestinationDetailsFragment extends Fragment {
 
     private void createDestinationAddedDialog() {
         hideProgressDialog();
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(getContext());
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.layout_booking_successful, null);
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setCancelable(false);
+        final Dialog dialogView = new Dialog(getContext(),android.R.style.Theme_Light_NoTitleBar_Fullscreen);
+        dialogView.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogView.setContentView(R.layout.layout_booking_successful);
+        dialogView.create();
         TextView tvDetails = dialogView.findViewById(R.id.tvDetails);
+        TextView tvGoBack = dialogView.findViewById(R.id.tvGoBack);
+        tvGoBack.setOnClickListener(v -> {
+            dialogView.dismiss();
+            getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new HomeFragment())
+                .commit();
+        });
         tvDetails.setText("Name: "+tvPlaceName.getText()+
                 "\n Quantity: "+destinationBook.getQuantity()+
                 "\n Package Type: "+destinationBook.getPackageType()+
                 "\n Time:"+destinationBook.getDate()+
                 "\n Price: "+destinationBook.getPrice());
 
-        dialogBuilder.setCancelable(true);
-        dialogBuilder.show();
+        dialogView.setCancelable(true);
+        dialogView.show();
+
 
 
 
@@ -156,6 +166,8 @@ public class DestinationDetailsFragment extends Fragment {
                     myCalendar.set(Calendar.MONTH, month);
                     myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     tvDate.setText(sdf.format(myCalendar.getTime()));
+                    destinationBook.setDate(tvDate.getText().toString());
+
                 });
 
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);

@@ -70,6 +70,16 @@
         />
 
 
+        <Button
+            android:id="@+id/buCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/google_red"
+            />
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

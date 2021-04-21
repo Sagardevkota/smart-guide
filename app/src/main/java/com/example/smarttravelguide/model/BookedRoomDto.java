@@ -2,6 +2,8 @@ package com.example.smarttravelguide.model;
 
 
 public class BookedRoomDto {
+
+    private int id;
     private int roomId;
     private String packageType;
     private int roomsBooked;
@@ -24,7 +26,9 @@ public class BookedRoomDto {
     private int sleepCount;
     private String totalRooms;
 
-    public BookedRoomDto(int roomId, String packageType, int roomsBooked, String paymentMethod, String checkInDate, String checkOutDate, int bookedBy, String totalPrice, int hotelId, String hotelName, String location, String price, String description, String picturePath, Room room, boolean breakFastIncluded, float latitude, float longitude, String roomType, int sleepCount, String totalRooms) {
+
+    public BookedRoomDto(int id, int roomId, String packageType, int roomsBooked, String paymentMethod, String checkInDate, String checkOutDate, int bookedBy, String totalPrice, int hotelId, String hotelName, String location, String price, String description, String picturePath, Room room, boolean breakFastIncluded, float latitude, float longitude, String roomType, int sleepCount, String totalRooms) {
+        this.id = id;
         this.roomId = roomId;
         this.packageType = packageType;
         this.roomsBooked = roomsBooked;
@@ -46,6 +50,14 @@ public class BookedRoomDto {
         this.roomType = roomType;
         this.sleepCount = sleepCount;
         this.totalRooms = totalRooms;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getRoomId() {
@@ -215,6 +227,7 @@ public class BookedRoomDto {
     public void setTotalRooms(String totalRooms) {
         this.totalRooms = totalRooms;
     }
+
 
 
 }

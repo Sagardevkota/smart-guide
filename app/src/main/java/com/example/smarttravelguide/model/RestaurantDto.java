@@ -2,6 +2,7 @@ package com.example.smarttravelguide.model;
 
 public class RestaurantDto {
 
+    private int id;
     private String name;
     private String location;
     private Double latitude;
@@ -15,7 +16,9 @@ public class RestaurantDto {
     private String time;
     private int bookedBy;
 
-    public RestaurantDto(String name, String location, Double latitude, Double longitude, String picturePath, String description, int totalPartySize, int restaurantId, int partyCount, String date, String time, int bookedBy) {
+
+    public RestaurantDto(int id, String name, String location, Double latitude, Double longitude, String picturePath, String description, int totalPartySize, int restaurantId, int partyCount, String date, String time, int bookedBy) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.latitude = latitude;
@@ -28,6 +31,14 @@ public class RestaurantDto {
         this.date = date;
         this.time = time;
         this.bookedBy = bookedBy;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
