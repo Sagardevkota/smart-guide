@@ -70,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         //get edittext values
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
+
+
         //check if email and password are not empty
         if (email.length() != 0 && password.length() != 0) {
             User user = new User(email,password);

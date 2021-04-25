@@ -28,7 +28,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_map.xml" value="0.1" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_my_account.xml" value="0.536" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_my_account_edit.xml" value="0.4788961038961039" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_my_booking.xml" value="0.5265060240963856" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_my_booking.xml" value="0.47513812154696133" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_my_booking_details.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_restaurant.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/fragment_restaurant_details.xml" value="0.44047619047619047" />
@@ -40,6 +40,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_booking_successful.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_destination_list.xml" value="0.536" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_hotel_list.xml" value="0.48849557522123893" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_payment.xml" value="0.4" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_place_list.xml" value="0.3086510263929619" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_restaurant_list.xml" value="0.6" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/layout_room_check.xml" value="0.6" />
@@ -48,6 +49,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/layout/single_chip_layout.xml" value="0.1875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/menu/setting_menu.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartTravelGuide/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -1,6 +1,7 @@
 package com.example.smarttravelguide;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,24 +10,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.Restaurant;
 import com.example.smarttravelguide.model.RestaurantBook;
+import com.example.smarttravelguide.model.RoomBook;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.widget.KhaltiButton;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -194,6 +206,7 @@ public class RestaurantDetails extends Fragment {
     }
 
     private void showDialog(RestaurantBook restaurantBook) {
+
         MaterialAlertDialogBuilder alertDialogBuilder = new MaterialAlertDialogBuilder(getContext());
         alertDialogBuilder.setMessage("Room is available for "+restaurantBook.getPartyCount()+ " people");
         alertDialogBuilder.setPositiveButton("Book Now", (dialog, which) -> {
@@ -228,6 +241,8 @@ public class RestaurantDetails extends Fragment {
                 .show();
 
     }
+
+
 
 
 }

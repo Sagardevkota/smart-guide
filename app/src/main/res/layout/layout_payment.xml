@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+
+
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PAYMENT METHOD"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/khaltiPrimaryDark"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+
+
+        />
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/khaltiPrimaryDark"
+        />
+
+    <Button
+         android:id="@+id/buCheckIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CASH ON PREMISE"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:padding="8dp"
+
+        android:backgroundTint="@color/khaltiPrimary"
+        />
+
+
+    <com.khalti.widget.KhaltiButton
+        xmlns:khalti="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/khalti_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        khalti:text="Pay Online Now"
+        />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

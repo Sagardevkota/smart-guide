@@ -19,22 +19,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarttravelguide.Constants;
 import com.example.smarttravelguide.HomeActivity;
 import com.example.smarttravelguide.HomeFragment;
 import com.example.smarttravelguide.R;
 import com.example.smarttravelguide.api.STGAPI;
+import com.example.smarttravelguide.model.Place;
 import com.example.smarttravelguide.model.Room;
 import com.example.smarttravelguide.model.RoomBook;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -285,7 +296,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         Button buBook = dialogView.findViewById(R.id.buBook);
 
         buBook.setOnClickListener(v -> {
-        createRoomAddedDialog(roomBook,dialogView);
+            showPaymentMethod(roomBook);
+
 
         });
 
@@ -293,7 +305,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         dialogView.show();
     }
 
-    private void createRoomAddedDialog(RoomBook roomBook,Dialog prevDialog) {
+    private void createRoomAddedDialog(RoomBook roomBook) {
+
         showProgressDialog("Adding Room");
 
         STGAPI.getApiService()
@@ -314,7 +327,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
                                 .setPositiveButton("Yes", (dialog, which) -> {
 
 
-                                    prevDialog.dismiss();
                                     final Dialog dialogView = new Dialog(context,android.R.style.Theme_Light_NoTitleBar_Fullscreen);
                                     dialogView.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                     dialogView.setContentView(R.layout.layout_booking_successful);
@@ -401,6 +413,69 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    private void showPaymentMethod(RoomBook roomBook) {
+
+        final Dialog dialogView = new Dialog(context,android.R.style.Theme_Light_NoTitleBar_Fullscreen);
+        dialogView.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogView.setContentView(R.layout.layout_payment);
+        dialogView.create();
+        Button buCheckIn = dialogView.findViewById(R.id.buCheckIn);
+        KhaltiButton buKhalti = dialogView.findViewById(R.id.khalti_button);
+
+
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(context,
+                setUpKhalti(
+                        String.valueOf(roomBook.getRoomId()),
+                        roomBook.getPackageType(),
+                        Long.parseLong(roomBook.getTotalPrice())*100,
+                        roomBook
+                ));
+
+
+
+        buKhalti.setOnClickListener(v -> khaltiCheckOut.show());
+
+        buCheckIn.setOnClickListener(v -> createRoomAddedDialog(roomBook));
+
+        dialogView.show();
+
+    }
+
+    public Config setUpKhalti(String productId, String productName, Long price,RoomBook roomBook) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("merchant_extra", "This is extra data");
+
+        Config.Builder builder = new Config.Builder(
+                Constants.KHALTI_API_KEY,
+                productId,
+                productName,
+                price,
+                new OnCheckOutListener() {
+                    @Override
+                    public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                        Log.i(action, errorMap.toString());
+
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull Map<String, Object> data) {
+                        createRoomAddedDialog(roomBook);
+                    }
+                })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.MOBILE_BANKING);
+                    add(PaymentPreference.CONNECT_IPS);
+                    add(PaymentPreference.SCT);
+                }})
+                .additionalData(map)
+                .productUrl("http://example.com/product")
+                .mobile("9800000000");
+
+        return builder.build();
     }
 
 

@@ -15,19 +15,31 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.smarttravelguide.api.STGAPI;
 import com.example.smarttravelguide.model.DestinationBook;
 import com.example.smarttravelguide.model.Place;
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -68,13 +80,39 @@ public class DestinationDetailsFragment extends Fragment {
             getActivity().getSupportFragmentManager().popBackStack();
         });
 
-        buBook.setOnClickListener((v)->bookAdventure());
+        buBook.setOnClickListener((v)->showPaymentMethod());
 
         setViews();
         return view;
     }
 
+    private void showPaymentMethod() {
+
+        final Dialog dialogView = new Dialog(getContext(),android.R.style.Theme_Light_NoTitleBar_Fullscreen);
+        dialogView.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogView.setContentView(R.layout.layout_payment);
+        dialogView.create();
+        Button buCheckIn = dialogView.findViewById(R.id.buCheckIn);
+        KhaltiButton buKhalti = dialogView.findViewById(R.id.khalti_button);
+        Place place = getArguments().getParcelable("place");
+
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(getContext(),
+                setUpKhalti(
+                        String.valueOf(place.getPlaceId()),
+                        place.getPlaceName(),
+                        Long.parseLong(destinationBook.getPrice())*100
+                ));
+
+        Toast.makeText(getContext(),destinationBook.getPrice(),Toast.LENGTH_SHORT).show();
+        buKhalti.setOnClickListener(v -> khaltiCheckOut.show());
+        buCheckIn.setOnClickListener(v -> bookAdventure());
+
+        dialogView.show();
+
+    }
+
     private void bookAdventure() {
+
         MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getContext());
         materialAlertDialogBuilder.setMessage("Are you sure you want to book "+tvPlaceName.getText()+"?")
                 .setPositiveButton("Yes", (dialog, which) -> {
@@ -86,7 +124,7 @@ public class DestinationDetailsFragment extends Fragment {
                                 if (jsonResponse.getStatus().equalsIgnoreCase("200 Ok"))
                                     createDestinationAddedDialog();
                             },throwable -> {Log.e(TAG, "bookAdventure: "+throwable.getMessage() );
-                            hideProgressDialog();
+                                hideProgressDialog();
                             });
 
                 })
@@ -94,8 +132,6 @@ public class DestinationDetailsFragment extends Fragment {
                     dialog.dismiss();
                 })
                 .show();
-
-
     }
 
     private void createDestinationAddedDialog() {
@@ -176,7 +212,8 @@ public class DestinationDetailsFragment extends Fragment {
 
             destinationBook = new DestinationBook(place.getPlaceId(),
                     place.getType(),
-                    1,tvDate.getText().toString(),
+                    1,
+                    tvDate.getText().toString(),
                     place.getExpense(),
                     Integer.parseInt(sharedPreferences.getString("id","")));
 
@@ -211,6 +248,41 @@ public class DestinationDetailsFragment extends Fragment {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    public Config setUpKhalti(String productId, String productName, Long price) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("merchant_extra", "This is extra data");
+
+        Config.Builder builder = new Config.Builder(
+                Constants.KHALTI_API_KEY,
+                productId,
+                productName,
+                price,
+                new OnCheckOutListener() {
+                    @Override
+                    public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                        Log.i(action, errorMap.toString());
+
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull Map<String, Object> data) {
+                        bookAdventure();
+                    }
+                })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.MOBILE_BANKING);
+                    add(PaymentPreference.CONNECT_IPS);
+                    add(PaymentPreference.SCT);
+                }})
+                .additionalData(map)
+                .productUrl("http://example.com/product")
+                .mobile("9800000000");
+
+        return builder.build();
     }
 
 
